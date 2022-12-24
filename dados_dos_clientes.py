@@ -4,7 +4,7 @@ from random import choice
 from random import randint
 
 f = Faker('pt_BR')
-quantidade = 1000
+quantidade = 100
 # Todos os arquivos foram criado no diretorio que tem a permissão do mysql
 print('-----TABELA TELEFONE-----')
 print('*'*10)
@@ -23,11 +23,11 @@ for cadastro in range(quantidade):
             case 'CEL':
                 # escrevendo o telefone no tb_telefone.txt se o tipo for 'CEL'
                 if ddd_tel and num_tel not in arq_telefone:
-                    arq_telefone.writelines(f'{tipo_tel}, {ddd_tel}, {num_tel}\n')
+                    arq_telefone.writelines(f'{tipo_tel},{ddd_tel},{num_tel}\n')
             case 'COM':
                 # escrevendo o telefone no tb_telefone.txt se o tipo for 'COM'
                 if ddd_tel and num_tel not in arq_telefone:
-                    arq_telefone.writelines(f'{tipo_tel}, {ddd_tel}, {num_tel}\n')
+                    arq_telefone.writelines(f'{tipo_tel},{ddd_tel},{num_tel}\n')
     print(f'Registro {tipo_tel}, {ddd_tel}, {num_tel} salvo com sucesso em arq_telefone!')
 
 print('-----TABELA ENDEREÇO-----')
@@ -44,7 +44,7 @@ for cadastro in range(quantidade):
         rua = f.street_name()
         num_casa = f.building_number()
 
-        arq_endereco.writelines(f'{nome_estado}, {uf}, {cidade}, {bairro}, {rua},{num_casa}\n')
+        arq_endereco.writelines(f'{nome_estado},{uf},{cidade},{bairro},{rua},{num_casa}\n')
     print(f'Registro {nome_estado},{uf},{cidade},{bairro},{rua},{num_casa} salvo em  arquivo arq_endereco!')
 
 # leitura de linhas do arquivo tb_telefone.txt
@@ -84,8 +84,8 @@ for cadastro in range(quantidade):
                 sobrenome = f.last_name_female()
         if cpf not in arq_cliente:
             arq_cliente.writelines(f'{primeiro_nome},{sobrenome},{genero},'
-                                   f'{cpf}, {randint(1, linhas_endereco)} {randint(1, linhas_telefone)}\n')
+                                   f'{cpf},{randint(1, linhas_endereco)},{randint(1, linhas_telefone)}\n')
 
         print(f'Registro {primeiro_nome},{sobrenome},{genero} salvo com sucesso em arq_cliente!')
 
-# Contagem de linhas para as foregn keys
+
